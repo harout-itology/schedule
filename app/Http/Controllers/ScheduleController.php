@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ScheduleRequest;
-use App\Http\Controllers\Lib\Slots;
+use App\Http\Lib\Slots;
 use Illuminate\Http\JsonResponse;
 
 class ScheduleController extends Controller
