@@ -27,8 +27,10 @@ class ScheduleRequest extends FormRequest
             '*.scheduleId' => 'required|numeric',
             '*.startDate' => 'required|date_format:Y-m-d',
             '*.startTime' => 'required|date_format:H:i:s',
-            '*.endDate' => 'required|date_format:Y-m-d',
-            '*.endTime' => 'required|date_format:H:i:s',
+            '*.endDate' => 'required|date_format:Y-m-d|after_or_equal:*.startDate',
+            '*.endTime' => 'required|date_format:H:i:s|after_or_equal:*.startTime',
+            '*.startBreak' => 'date_format:H:i:s',
+            '*.endBreak' => 'date_format:H:i:s|after_or_equal:*.startBreak',
             '*.employeeId' => 'required|numeric',
             '*.employeeName' => 'required|string',
         ];
