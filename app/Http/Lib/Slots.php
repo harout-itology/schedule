@@ -3,6 +3,7 @@
 namespace App\Http\Lib;
 
 use Carbon\Carbon;
+use App\Models\Slot;
 
 class Slots
 {
@@ -53,9 +54,12 @@ class Slots
             }
 
             $time = $start->format('Y-m-d H:i') . ' - ' . $singleSlot->format('H:i');
-            $employeeSlots[$time . ' - ' . $employee] = $time . ' ' . $schedule['employeeName'];
+            $slotText = $time . ' ' . $schedule['employeeName'];
+            $employeeSlots[$time . ' - ' . $employee] = $slotText;
             $start = $singleSlot->copy();
             $singleSlot = $start->copy()->addMinutes(self::SLOT_DURATION);
+
+            Slot::updateOrCreate(['slot' => $slotText]);
         }
 
         return $employeeSlots;
